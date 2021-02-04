@@ -20,7 +20,6 @@
 		A1C4876925B7492700FAD26D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4876825B7492700FAD26D /* AppDelegate.swift */; };
 		A1C4876B25B7492700FAD26D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4876A25B7492700FAD26D /* SceneDelegate.swift */; };
 		A1C4876D25B7492700FAD26D /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4876C25B7492700FAD26D /* MenuVC.swift */; };
-		A1C4877025B7492700FAD26D /* Prototypes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C4876E25B7492700FAD26D /* Prototypes.storyboard */; };
 		A1C4877225B7492A00FAD26D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C4877125B7492A00FAD26D /* Assets.xcassets */; };
 		A1C4877525B7492A00FAD26D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C4877325B7492A00FAD26D /* LaunchScreen.storyboard */; };
 		A1C4879C25B7829600FAD26D /* ESC10SoundClassifierModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A1C4879B25B7829600FAD26D /* ESC10SoundClassifierModel.mlmodel */; };
@@ -59,7 +58,6 @@
 		A1C4876825B7492700FAD26D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C4876A25B7492700FAD26D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A1C4876C25B7492700FAD26D /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
-		A1C4876F25B7492700FAD26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Prototypes.storyboard; sourceTree = "<group>"; };
 		A1C4877125B7492A00FAD26D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1C4877425B7492A00FAD26D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1C4877625B7492A00FAD26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +114,7 @@
 				A1C4876825B7492700FAD26D /* AppDelegate.swift */,
 				A1C4876A25B7492700FAD26D /* SceneDelegate.swift */,
 				A1C4876C25B7492700FAD26D /* MenuVC.swift */,
+				858CD91225CBC87600261BD4 /* ModificationType.swift */,
 				857C93AD25C8B8AB00D82213 /* RecordTableViewCell.swift */,
 				857C93A325C836D100D82213 /* RecordVC.swift */,
 				A1C487EE25B883D700FAD26D /* AudioManager.swift */,
@@ -127,7 +126,6 @@
 				A1C487E725B8835E00FAD26D /* Supporting Files */,
 				A1C4877125B7492A00FAD26D /* Assets.xcassets */,
 				A1C487C525B78CFD00FAD26D /* AudioPreprocessingLib */,
-				858CD91225CBC87600261BD4 /* ModificationType.swift */,
 			);
 			path = CodingAssignment2021;
 			sourceTree = "<group>";
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				A1C487DC25B7917E00FAD26D /* CodingAssignment2021.entitlements */,
-				A1C4876E25B7492700FAD26D /* Prototypes.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -235,7 +232,6 @@
 			files = (
 				A1C4877525B7492A00FAD26D /* LaunchScreen.storyboard in Resources */,
 				A1C4877225B7492A00FAD26D /* Assets.xcassets in Resources */,
-				A1C4877025B7492700FAD26D /* Prototypes.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,14 +306,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A1C4876E25B7492700FAD26D /* Prototypes.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1C4876F25B7492700FAD26D /* Base */,
-			);
-			name = Prototypes.storyboard;
-			sourceTree = "<group>";
-		};
 		A1C4877325B7492A00FAD26D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

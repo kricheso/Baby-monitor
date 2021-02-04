@@ -65,6 +65,7 @@ class MenuVC: UIViewController {
     private lazy var button2: BMButton = {
         let button = BMButton(title: Constants.button2Text)
         button.addTarget(self, action: #selector(seeHistory), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -134,7 +135,7 @@ private extension MenuVC {
         
         // buttonStackView
         buttonStackView.centerAnchors == bottomAreaView.centerAnchors
-        buttonStackView.heightAnchor == bottomAreaView.heightAnchor * 0.3
+        buttonStackView.heightAnchor == bottomAreaView.heightAnchor * 0.15
         buttonStackView.widthAnchor == bottomAreaView.widthAnchor * 0.6
         
     }
@@ -150,7 +151,7 @@ private extension MenuVC {
     }
     
     @objc func seeHistory() {
-        print("See History")
+        // TODO: View cry history feature here
     }
     
 }

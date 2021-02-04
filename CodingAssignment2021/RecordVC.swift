@@ -14,7 +14,7 @@ class RecordVC: UIViewController {
     
     var cryIntervals = CryIntervals(confidenceThreshold: Constants.confidenceThreshold, maximumCryGap: Constants.maximumCryGap, minimumCryDuration: Constants.minimumCryDuration)
     let mlDispatchQueue = DispatchQueue(label: Constants.mlDispatchQueueLabel)
-    let streamAnalyzer = SNAudioStreamAnalyzer(format: AudioManager.shared.audioEngine.inputNode.outputFormat(forBus: 0))
+    let streamAnalyzer = SNAudioStreamAnalyzer(format: AudioManager.shared.getInputNodeFormat())
     var timer = Timer()
     
     private enum Constants {
@@ -32,6 +32,9 @@ class RecordVC: UIViewController {
         static let recordButtonTitle = "Stop Recording"
         static let tableViewCellHeight: CGFloat = 60
         static let timeInterval: TimeInterval = 1
+        static let unauthorizedWarningButtonTitle = "OK"
+        static let unauthorizedWarningMessage = "Allow microphone access to application in settings."
+        static let unauthorizedWarningTitle = "Mic Unauthorized"
     }
     
     private lazy var button: BMButton = {
@@ -76,7 +79,10 @@ class RecordVC: UIViewController {
     }
     
     @objc func buttonPressed() {
-        tableView.reloadData()
+        guard isAuthorized() else {
+            showUnauthorizedWarning()
+            return
+        }
         if button.isRecordingStyled {
             button.setToNormalStyle(title: Constants.buttonTitle)
             AudioManager.shared.stop()
@@ -87,7 +93,8 @@ class RecordVC: UIViewController {
             AudioManager.shared.start()
         }
     }
-    
+
+    // NOTE: The analyzer reblocks the buffer to the block size expected by the MLModel. By default, analysis occurs on the first audio channel in the audio stream. The analyzer applies sample rate conversion if the provided audio doesn’t match the sample rate required by the MLModel.
     private func prepareMLModel() {
         do {
             AudioManager.shared.installTap { (buffer, audioTime) in
@@ -101,6 +108,16 @@ class RecordVC: UIViewController {
         } catch {
             fatalError(Constants.mlSetupErrorMessage)
         }
+    }
+
+    private func showUnauthorizedWarning() {
+        let alert = UIAlertController(title: Constants.unauthorizedWarningTitle, message: Constants.unauthorizedWarningMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: Constants.unauthorizedWarningButtonTitle, style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func isAuthorized() -> Bool {
+        return AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
     }
 
 }
@@ -170,8 +187,7 @@ extension RecordVC: SNResultsObserving {
     
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult else { return }
-        let classifications = result.classifications.sorted { $0.confidence > $1.confidence }
-        guard let cry = (classifications.first { $0.identifier == Constants.cryingBabyId }) else { return }
+        guard let cry = (result.classifications.first { $0.identifier == Constants.cryingBabyId }) else { return }
         print("\(cry.identifier): \(cry.confidence)")
         let modificationType = cryIntervals.recordData(confidence: cry.confidence)
         if modificationType == .createdNewEntry {
