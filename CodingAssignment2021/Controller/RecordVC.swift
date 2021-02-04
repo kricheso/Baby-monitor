@@ -12,10 +12,10 @@ import UIKit
 /// The view controller for the crying baby detecting screen.
 class RecordVC: UIViewController {
     
-    var cryIntervals = CryIntervals(confidenceThreshold: Constants.confidenceThreshold, maximumCryGap: Constants.maximumCryGap, minimumCryDuration: Constants.minimumCryDuration)
-    var timer = Timer()
-    let mlDispatchQueue = DispatchQueue(label: Constants.mlDispatchQueueLabel)
-    var streamAnalyzer = SNAudioStreamAnalyzer(format: MLSoundManager.getInputNodeFormat())
+    private var cryIntervals = CryIntervals(confidenceThreshold: Constants.confidenceThreshold, maximumCryGap: Constants.maximumCryGap, minimumCryDuration: Constants.minimumCryDuration)
+    private var timer = Timer()
+    private let mlDispatchQueue = DispatchQueue(label: Constants.mlDispatchQueueLabel)
+    private var streamAnalyzer = SNAudioStreamAnalyzer(format: MLSoundManager.getInputNodeFormat())
     
     private enum Constants {
         static let buttonTitle = "Start Recording"
