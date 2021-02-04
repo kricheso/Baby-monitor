@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851D68C825CC625C00969959 /* MLSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D68C725CC625C00969959 /* MLSoundManager.swift */; };
 		857C93A425C836D100D82213 /* RecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C93A325C836D100D82213 /* RecordVC.swift */; };
 		857C93A625C846CB00D82213 /* FormattedStringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C93A525C846CB00D82213 /* FormattedStringManager.swift */; };
 		857C93AE25C8B8AB00D82213 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C93AD25C8B8AB00D82213 /* RecordTableViewCell.swift */; };
@@ -25,7 +26,6 @@
 		A1C4879C25B7829600FAD26D /* ESC10SoundClassifierModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A1C4879B25B7829600FAD26D /* ESC10SoundClassifierModel.mlmodel */; };
 		A1C487C925B78D3200FAD26D /* AudioPreprocessing.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C487C825B78D3200FAD26D /* AudioPreprocessing.m */; };
 		A1C487DF25B7917E00FAD26D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C487DE25B7917E00FAD26D /* AudioToolbox.framework */; };
-		A1C487EF25B883D700FAD26D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C487EE25B883D700FAD26D /* AudioManager.swift */; };
 		A7A78AABD7FD912664303B9E /* Pods_CodingAssignment2021.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA6DF9801C5E031DF1E81D6 /* Pods_CodingAssignment2021.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		851D68C725CC625C00969959 /* MLSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLSoundManager.swift; sourceTree = "<group>"; };
 		857C93A325C836D100D82213 /* RecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVC.swift; sourceTree = "<group>"; };
 		857C93A525C846CB00D82213 /* FormattedStringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedStringManager.swift; sourceTree = "<group>"; };
 		857C93AD25C8B8AB00D82213 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		A1C487C825B78D3200FAD26D /* AudioPreprocessing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPreprocessing.m; sourceTree = "<group>"; };
 		A1C487DC25B7917E00FAD26D /* CodingAssignment2021.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodingAssignment2021.entitlements; sourceTree = "<group>"; };
 		A1C487DE25B7917E00FAD26D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A1C487EE25B883D700FAD26D /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		B8740A0E4330E7F60382080D /* Pods-CodingAssignment2021.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingAssignment2021.debug.xcconfig"; path = "Target Support Files/Pods-CodingAssignment2021/Pods-CodingAssignment2021.debug.xcconfig"; sourceTree = "<group>"; };
 		FA5A4F99C266D0B7B718BB5C /* Pods-CodingAssignment2021.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingAssignment2021.release.xcconfig"; path = "Target Support Files/Pods-CodingAssignment2021/Pods-CodingAssignment2021.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,7 +117,7 @@
 				858CD91225CBC87600261BD4 /* ModificationType.swift */,
 				857C93AD25C8B8AB00D82213 /* RecordTableViewCell.swift */,
 				857C93A325C836D100D82213 /* RecordVC.swift */,
-				A1C487EE25B883D700FAD26D /* AudioManager.swift */,
+				851D68C725CC625C00969959 /* MLSoundManager.swift */,
 				857C93A525C846CB00D82213 /* FormattedStringManager.swift */,
 				85BBD75425C725A9006F5D53 /* BMColor.swift */,
 				85BBD75825C82DCE006F5D53 /* BMButton.swift */,
@@ -287,7 +287,6 @@
 				A1C4876D25B7492700FAD26D /* MenuVC.swift in Sources */,
 				857C93A625C846CB00D82213 /* FormattedStringManager.swift in Sources */,
 				85BBD75725C72EFE006F5D53 /* BorderedView.swift in Sources */,
-				A1C487EF25B883D700FAD26D /* AudioManager.swift in Sources */,
 				857C93AE25C8B8AB00D82213 /* RecordTableViewCell.swift in Sources */,
 				A1C4879C25B7829600FAD26D /* ESC10SoundClassifierModel.mlmodel in Sources */,
 				85BBD75925C82DCE006F5D53 /* BMButton.swift in Sources */,
@@ -300,6 +299,7 @@
 				8581EB9425C7189700F4E5EA /* BorderedButton.swift in Sources */,
 				857C93A425C836D100D82213 /* RecordVC.swift in Sources */,
 				85F8420625CAE8A40073332F /* CryIntervals.swift in Sources */,
+				851D68C825CC625C00969959 /* MLSoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

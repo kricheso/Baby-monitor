@@ -13,9 +13,9 @@ import UIKit
 class RecordVC: UIViewController {
     
     var cryIntervals = CryIntervals(confidenceThreshold: Constants.confidenceThreshold, maximumCryGap: Constants.maximumCryGap, minimumCryDuration: Constants.minimumCryDuration)
-    let mlDispatchQueue = DispatchQueue(label: Constants.mlDispatchQueueLabel)
-    let streamAnalyzer = SNAudioStreamAnalyzer(format: AudioManager.shared.getInputNodeFormat())
     var timer = Timer()
+    let mlDispatchQueue = DispatchQueue(label: Constants.mlDispatchQueueLabel)
+    var streamAnalyzer = SNAudioStreamAnalyzer(format: MLSoundManager.getInputNodeFormat())
     
     private enum Constants {
         static let buttonTitle = "Start Recording"
@@ -67,7 +67,7 @@ class RecordVC: UIViewController {
         initializeAttributes()
         addSubviews()
         setupConstraints()
-        prepareMLModel()
+        configureMLSoundAnalyzer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -85,29 +85,22 @@ class RecordVC: UIViewController {
         }
         if button.isRecordingStyled {
             button.setToNormalStyle(title: Constants.buttonTitle)
-            AudioManager.shared.stop()
+            MLSoundManager.stop()
         }
         else {
             button.setToRecordStyle(title: Constants.recordButtonTitle)
-            prepareMLModel()
-            AudioManager.shared.start()
+            MLSoundManager.start()
         }
     }
-
-    // NOTE: The analyzer reblocks the buffer to the block size expected by the MLModel. By default, analysis occurs on the first audio channel in the audio stream. The analyzer applies sample rate conversion if the provided audio doesn’t match the sample rate required by the MLModel.
-    private func prepareMLModel() {
-        do {
-            AudioManager.shared.installTap { (buffer, audioTime) in
-                self.mlDispatchQueue.async {
-                    self.streamAnalyzer.analyze(buffer, atAudioFramePosition: audioTime.sampleTime)
-                }
+    
+    private func configureMLSoundAnalyzer() {
+        MLSoundManager.installTap { [weak self] (buffer, when) in
+            guard let self = self else { return }
+            self.mlDispatchQueue.async {
+                self.streamAnalyzer.analyze(buffer, atAudioFramePosition: when.sampleTime)
             }
-            let classifier = try ESC10SoundClassifierModel(configuration: MLModelConfiguration())
-            let request = try SNClassifySoundRequest(mlModel: classifier.model)
-            try streamAnalyzer.add(request, withObserver: self)
-        } catch {
-            fatalError(Constants.mlSetupErrorMessage)
         }
+        MLSoundManager.addRequest(to: streamAnalyzer, for: self)
     }
 
     private func showUnauthorizedWarning() {
@@ -116,8 +109,13 @@ class RecordVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    /// Determines if the user allowed microphone access. iOS Simulators are automatically authorized.
     private func isAuthorized() -> Bool {
-        return AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
+        #if targetEnvironment(simulator)
+            return true
+        #else
+            return AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
+        #endif
     }
 
 }
