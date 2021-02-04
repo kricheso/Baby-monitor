@@ -1,0 +1,6 @@
+framework module Pods_CodingAssignment2021 {
+  umbrella header "Pods-CodingAssignment2021-umbrella.h"
+
+  export *
+  module * { export * }
+}
